@@ -44,7 +44,7 @@ class KubeVirt(Driver):
     .. code-block:: yaml
 
         driver:
-          name: kubevirt
+          name: molecule-kubevirt
         platforms:
           - name: instance
             namespace: default
@@ -108,7 +108,7 @@ class KubeVirt(Driver):
     def __init__(self, config=None):
         """Construct Kubevirt."""
         super(KubeVirt, self).__init__(config)
-        self._name = "kubevirt"
+        self._name = "molecule-kubevirt"
 
     @property
     def name(self):

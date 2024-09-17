@@ -6,4 +6,5 @@ from molecule.test.conftest import random_string, temp_dir  # noqa
 @pytest.fixture
 def DRIVER():
     """Return name of the driver to be tested."""
-    return "kubevirt"
+    return "molecule-kubevirt"
+
