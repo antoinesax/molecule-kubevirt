@@ -2,7 +2,7 @@
 dependency:
   name: galaxy
 driver:
-  name: kubevirt
+  name: molecule-kubevirt
 platforms:
   - name: instance-full
     namespace: kube-public
