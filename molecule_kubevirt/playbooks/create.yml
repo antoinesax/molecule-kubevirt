@@ -234,6 +234,7 @@
       k8s:
         state: present
         wait: true
+        wait_sleep: 5
         definition:
           apiVersion: v1
           kind: Service
