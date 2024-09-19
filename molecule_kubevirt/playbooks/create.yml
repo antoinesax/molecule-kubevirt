@@ -234,7 +234,6 @@
       k8s:
         state: present
         wait: true
-        wait_sleep: 5
         definition:
           apiVersion: v1
           kind: Service
@@ -244,6 +243,15 @@
           # workaround https://stackoverflow.com/questions/63961938/ansible-variable-conversion-to-int-is-ignored
           spec: "{{ spec | from_yaml }}"
       register: load_balancer_services
+      until: >
+        load_balancer_services is defined and
+        load_balancer_services.result is defined and
+        load_balancer_services.result.status is defined and
+        load_balancer_services.result.status.loadBalancer is defined and
+        load_balancer_services.result.status.loadBalancer.ingress is defined and
+        (load_balancer_services.result.status.loadBalancer.ingress | first | d({})).ip | d('') != ''
+      retries: 2
+      delay: 2
       loop: "{{ molecule_yml.platforms  }}"
       loop_control:
         label: "{{ item.name }}"
