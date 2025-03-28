@@ -41,8 +41,7 @@
     - name: Create ssh key pair
       openssh_keypair:
         path: "{{ ssh_key_path }}"
-        size: 1024
-        type: rsa
+        type: ed25519
       loop: "{{ molecule_yml.platforms }}"
       loop_control:
         label: "{{ item.name }}"
